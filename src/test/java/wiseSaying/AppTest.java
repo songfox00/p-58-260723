@@ -1,9 +1,20 @@
+package wiseSaying;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WiseSayingControllerTest {
+public class AppTest {
+
+    @Test
+    @DisplayName("'== 명언 앱 ==' 출력")
+    void t1() {
+
+        String out = AppTestRunner.run("");
+
+        assertThat(out).contains("== 명언 앱 ==");
+    }
 
     @Test
     @DisplayName("등록")
@@ -67,4 +78,5 @@ public class WiseSayingControllerTest {
                 .contains("1 / 작자미상 / 현재를 사랑하라.");
 
     }
+
 }
