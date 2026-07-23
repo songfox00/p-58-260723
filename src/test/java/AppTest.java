@@ -41,4 +41,19 @@ public class AppTest {
         assertThat(out).contains("1번 명언이 등록되었습니다.");
     }
 
+    @Test
+    @DisplayName("등록할때 마다 생성되는 명언번호가 증가")
+    void t4() {
+        String out = AppTestRunner.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                너 자신을 알라
+                소크라테스
+                """);
+
+        assertThat(out).contains("2번 명언이 등록되었습니다.");
+    }
+
 }
