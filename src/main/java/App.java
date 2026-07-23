@@ -1,3 +1,6 @@
+import com.back.domain.system.controller.SystemController;
+import com.back.domain.wiseSaying.controller.WiseSayingController;
+
 import java.util.Scanner;
 
 public class App {
