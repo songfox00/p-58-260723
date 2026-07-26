@@ -37,12 +37,12 @@ public class WiseSayingService {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findListDesc(String keywordType, String keyword) {
+    public List<WiseSaying> findListDesc(String keywordType, String keyword, int pageSize) {
 
         if (keywordType.equals("content")) {
-            return wiseSayingRepository.findByContentContainingIdDesc(keyword);
+            return wiseSayingRepository.findByContentContainingIdDesc(keyword, pageSize);
         } else {
-            return wiseSayingRepository.findByAuthorContainingIdDesc(keyword);
+            return wiseSayingRepository.findByAuthorContainingIdDesc(keyword, pageSize);
         }
     }
 }
