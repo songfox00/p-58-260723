@@ -14,6 +14,14 @@ public class WiseSayingRepository {
         return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
     }
 
+    public WiseSaying findByIdOrNull(int id) {
+
+        return wiseSayings.stream()
+                .filter(wiseSaying -> wiseSaying.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
     public WiseSaying save(WiseSaying wiseSaying) {
         if(wiseSaying.isNew()) {
             wiseSaying.setId(++lastId);

@@ -14,6 +14,10 @@ public class WiseSayingService {
         this.wiseSayingRepository = AppContext.wiseSayingRepository;
     }
 
+    public WiseSaying findByIdOrNull(int id) {
+        return wiseSayingRepository.findByIdOrNull(id);
+    }
+
     public boolean delete(int id) {
         return wiseSayingRepository.delete(id);
     }

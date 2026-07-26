@@ -17,6 +17,19 @@ public class WiseSayingController {
         this.wiseSayingService = AppContext.wiseSayingService;
     }
 
+    public void actionModify(Rq rq) {
+
+        int id = rq.getParamAsInt("id", -1);
+
+        WiseSaying wiseSaying = wiseSayingService.findByIdOrNull(id);
+
+        if(wiseSaying == null) {
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
+        }
+
+    }
+
     public void actionDelete(Rq rq) {
 
         int id = rq.getParamAsInt("id", -1);
