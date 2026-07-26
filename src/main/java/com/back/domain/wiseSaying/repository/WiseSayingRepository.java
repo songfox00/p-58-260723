@@ -56,7 +56,6 @@ public class WiseSayingRepository {
                 .filter(
                         w -> w.getAuthor().contains(keyword)
                 )
-                .limit(pageSize)
                 .toList();
 
         return pageOf(result, page, pageSize);
