@@ -70,8 +70,9 @@ public class WiseSayingController {
         System.out.println("----------------------");
 
         int pageSize = rq.getParamAsInt("pageSize", 5);
+        int page = rq.getParamAsInt("page", 1);
 
-        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc(keywordType, keyword, pageSize);
+        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc(keywordType, keyword, pageSize, page);
 
         wiseSayings
                 .reversed()
