@@ -14,9 +14,9 @@ public class WiseSayingService {
         this.wiseSayingRepository = AppContext.wiseSayingRepository;
     }
 
-    public void modify(WiseSaying wiseSaying, String newSaying, String newAuthor) {
+    public void modify(WiseSaying wiseSaying, String newContent, String newAuthor) {
 
-        wiseSaying.setSaying(newSaying);
+        wiseSaying.setContent(newContent);
         wiseSaying.setAuthor(newAuthor);
 
         wiseSayingRepository.save(wiseSaying);
@@ -37,7 +37,22 @@ public class WiseSayingService {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findListDesc() {
-        return wiseSayingRepository.findListDesc();
+    public List<WiseSaying> findListDesc(String keywordType, String keyword) {
+
+        List<WiseSaying> list = wiseSayingRepository.findListDesc();
+
+        if (keywordType.equals("content")) {
+            return list.stream()
+                    .filter(
+                            w -> w.getContent().contains(keyword)
+                    )
+                    .toList();
+        } else {
+            return list.stream()
+                    .filter(
+                            w -> w.getAuthor().contains(keyword)
+                    )
+                    .toList();
+        }
     }
 }
