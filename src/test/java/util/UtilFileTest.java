@@ -1,11 +1,24 @@
 package util;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UtilFileTest {
+    // @BeforeAll, @AfterAll => 전체 테스트 전후 처리
+    // @BeforeEach, @AfterEach => 각각의 테스트 케이스 전후 처리
+    @BeforeAll
+    static void beforeAll() {
+//        Util.file.mkdir("temp");
+    }
+
+    @AfterAll
+    static void afterAll() {
+//        Util.file.rmdir("temp");
+    }
     @Test
     @DisplayName("파일 생성")
     void t1() {
@@ -21,7 +34,7 @@ public class UtilFileTest {
 
         assertThat(rst).isTrue();
 
-        Util.file.delete(filePath);
+//        Util.file.delete(filePath);
 
     }
 
@@ -56,5 +69,6 @@ public class UtilFileTest {
         // then
         assertThat(content).isEqualTo("hello world");
 
+        Util.file.delete(filePath);
     }
 }
