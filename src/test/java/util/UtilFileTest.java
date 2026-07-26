@@ -12,12 +12,12 @@ public class UtilFileTest {
     // @BeforeEach, @AfterEach => 각각의 테스트 케이스 전후 처리
     @BeforeAll
     static void beforeAll() {
-//        Util.file.mkdir("temp");
+        Util.file.mkdir("temp");
     }
 
     @AfterAll
     static void afterAll() {
-//        Util.file.rmdir("temp");
+        Util.file.rmdir("temp");
     }
     @Test
     @DisplayName("파일 생성")
