@@ -61,7 +61,7 @@ public class UtilFileTest {
 
         // given
         String filePath = "test.txt";
-        Util.file.set(filePath, "hello world"); // 파일 쓰기
+        Util.file.set(filePath, "sdfsdf"); // 파일 쓰기
 
         // when
         String content = Util.file.get(filePath, "");

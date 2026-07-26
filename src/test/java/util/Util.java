@@ -3,6 +3,8 @@ package util;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Util {
     // 이너 클래스
@@ -91,6 +93,72 @@ public class Util {
             } catch (IOException e) {
                 throw new RuntimeException("디렉토리 생성 실패: " + dirPath, e);
             }
+        }
+    }
+
+    public static class json {
+
+        public static String toString(Map<String, Object> map) {
+            StringBuilder sb = new StringBuilder();
+
+            sb.append("{");
+            sb.append("\n");
+
+            map.forEach((key, value) -> {
+                sb.append("    ");
+                key = "\"" + key + "\"";
+
+                if (value instanceof String) {
+                    value = "\"" + value + "\"";
+                }
+
+                sb.append("%s: %s,\n".formatted(key, value));
+            });
+
+            if (!map.isEmpty()) {
+                sb.delete(sb.length() - 2, sb.length());
+            }
+
+            sb.append("\n");
+            sb.append("}");
+
+            return sb.toString();
+        }
+
+        public static Map<String, Object> toMap(String jsonStr) {
+            Map<String, Object> map = new LinkedHashMap<>();
+
+            jsonStr = jsonStr.substring(1, jsonStr.length() - 1);
+
+            String[] jsonStrBits = jsonStr.split(",\n    \"");
+
+            for (String jsonStrBit : jsonStrBits) {
+                jsonStrBit = jsonStrBit.trim();
+
+                if (jsonStrBit.endsWith(",")) jsonStrBit = jsonStrBit.substring(0, jsonStrBit.length() - 1);
+
+                String[] jsonField = jsonStrBit.split("\": ");
+
+                String key = jsonField[0];
+                if (key.startsWith("\"")) key = key.substring(1);
+
+                boolean valueIsString = jsonField[1].startsWith("\"") && jsonField[1].endsWith("\"");
+                String value = jsonField[1];
+
+                if (valueIsString) value = value.substring(1, value.length() - 1);
+
+                if (valueIsString) {
+                    map.put(key, value);
+                } else if (value.equals("true") || value.equals("false")) {
+                    map.put(key, value.equals("true"));
+                } else if (value.contains(".")) {
+                    map.put(key, Double.parseDouble(value));
+                } else {
+                    map.put(key, Integer.parseInt(value));
+                }
+            }
+
+            return map;
         }
     }
 }
