@@ -39,20 +39,10 @@ public class WiseSayingService {
 
     public List<WiseSaying> findListDesc(String keywordType, String keyword) {
 
-        List<WiseSaying> list = wiseSayingRepository.findListDesc();
-
         if (keywordType.equals("content")) {
-            return list.stream()
-                    .filter(
-                            w -> w.getContent().contains(keyword)
-                    )
-                    .toList();
+            return wiseSayingRepository.findByContentContaining(keyword);
         } else {
-            return list.stream()
-                    .filter(
-                            w -> w.getAuthor().contains(keyword)
-                    )
-                    .toList();
+            return wiseSayingRepository.findByAuthorContaining(keyword);
         }
     }
 }
