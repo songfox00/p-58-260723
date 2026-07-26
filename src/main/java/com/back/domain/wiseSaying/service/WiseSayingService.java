@@ -14,6 +14,10 @@ public class WiseSayingService {
         this.wiseSayingRepository = AppContext.wiseSayingRepository;
     }
 
+    public boolean delete(int id) {
+        return wiseSayingRepository.delete(id);
+    }
+
     public WiseSaying write(String saying, String author) {
         WiseSaying wiseSaying = new WiseSaying(saying, author);
         wiseSayingRepository.save(wiseSaying);

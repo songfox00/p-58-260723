@@ -10,6 +10,10 @@ public class WiseSayingRepository {
     private List<WiseSaying> wiseSayings = new ArrayList<>();
     private int lastId = 0;
 
+    public boolean delete(int id) {
+        return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+    }
+
     public WiseSaying save(WiseSaying wiseSaying) {
         if(wiseSaying.isNew()) {
             wiseSaying.setId(++lastId);
