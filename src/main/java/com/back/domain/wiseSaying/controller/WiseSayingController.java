@@ -1,5 +1,6 @@
 package com.back.domain.wiseSaying.controller;
 
+import com.back.domain.wiseSaying.dto.PageDto;
 import com.back.domain.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.service.WiseSayingService;
 import com.back.global.AppContext;
@@ -72,10 +73,11 @@ public class WiseSayingController {
         int pageSize = rq.getParamAsInt("pageSize", 5);
         int page = rq.getParamAsInt("page", 1);
 
-        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc(keywordType, keyword, pageSize, page);
+        PageDto pageDto = wiseSayingService.findListDesc(keywordType, keyword, pageSize, page);
+
+        List<WiseSaying> wiseSayings = pageDto.getContent();
 
         wiseSayings
-                .reversed()
                 .stream()
                 .forEach(wiseSaying -> System.out.printf("%d / %s / %s%n",
                         wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
