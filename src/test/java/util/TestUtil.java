@@ -1,7 +1,6 @@
 package util;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -26,9 +25,15 @@ public class TestUtil {
 
     }
 
-    public static void clearSetOutToByteArray(ByteArrayOutputStream outputStream) throws IOException {
+    public static void clearSetOutToByteArray(ByteArrayOutputStream outputStream) {
         System.setOut(ORIGINAL_OUT);
-        outputStream.close();
+
+        try {
+            outputStream.close();
+        } catch (Exception e) {
+            System.out.println("aaa");
+        }
+
         CURRENT_OUT.close();
     }
 }

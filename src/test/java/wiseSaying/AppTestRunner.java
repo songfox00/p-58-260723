@@ -16,6 +16,8 @@ public class AppTestRunner {
         AppContext.init(sc);
         new App().run();
 
+        TestUtil.clearSetOutToByteArray(outputStream);
+
         return outputStream.toString();
     }
 

@@ -40,9 +40,9 @@ public class WiseSayingService {
     public List<WiseSaying> findListDesc(String keywordType, String keyword) {
 
         if (keywordType.equals("content")) {
-            return wiseSayingRepository.findByContentContaining(keyword);
+            return wiseSayingRepository.findByContentContainingIdDesc(keyword);
         } else {
-            return wiseSayingRepository.findByAuthorContaining(keyword);
+            return wiseSayingRepository.findByAuthorContainingIdDesc(keyword);
         }
     }
 }
