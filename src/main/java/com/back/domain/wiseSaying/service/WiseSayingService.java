@@ -14,6 +14,14 @@ public class WiseSayingService {
         this.wiseSayingRepository = AppContext.wiseSayingRepository;
     }
 
+    public void modify(WiseSaying wiseSaying, String newSaying, String newAuthor) {
+
+        wiseSaying.setSaying(newSaying);
+        wiseSaying.setAuthor(newAuthor);
+
+        wiseSayingRepository.save(wiseSaying);
+    }
+
     public WiseSaying findByIdOrNull(int id) {
         return wiseSayingRepository.findByIdOrNull(id);
     }
