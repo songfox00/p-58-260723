@@ -54,6 +54,10 @@ public class WiseSayingFileRepository {
         return Optional.of(wiseSaying);
     }
 
+    public boolean delete(WiseSaying wiseSaying) {
+        return Util.file.delete(getFilePath(wiseSaying.getId()));
+    }
+
     private void incrementLastId() {
         Util.file.set(getLastIdPath(), String.valueOf(getLastId() + 1));
     }
