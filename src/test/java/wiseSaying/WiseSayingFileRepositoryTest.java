@@ -3,7 +3,6 @@ package wiseSaying;
 import com.back.domain.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.repository.WiseSayingFileRepository;
 import com.back.global.AppContext;
-import com.back.standard.Util;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ public class WiseSayingFileRepositoryTest {
 
     @BeforeEach
     void clearDb(){
-        Util.file.delete("db/wiseSaying");
+        WiseSayingFileRepository.clear();
     }
 
     @Test

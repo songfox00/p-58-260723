@@ -17,7 +17,7 @@ public class WiseSayingRepository {
 
     public WiseSaying findByIdOrNull(int id) {
 
-        return wiseSayings.stream()
+            return wiseSayings.stream()
                 .filter(wiseSaying -> wiseSaying.getId() == id)
                 .findFirst()
                 .orElse(null);
