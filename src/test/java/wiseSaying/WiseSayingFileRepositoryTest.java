@@ -1,5 +1,6 @@
 package wiseSaying;
 
+import com.back.domain.wiseSaying.dto.PageDto;
 import com.back.domain.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.repository.WiseSayingFileRepository;
 import com.back.global.AppContext;
@@ -113,6 +114,28 @@ public class WiseSayingFileRepositoryTest {
                         wiseSaying1,
                         wiseSaying2,
                         wiseSaying3
+                );
+    }
+
+    @Test
+    @DisplayName("명언 다건 조회 - content 필터링")
+    void t6() {
+
+        WiseSaying wiseSaying1 = new WiseSaying("꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
+        wiseSayingFileRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying2 = new WiseSaying("너 자신을 알라.", "소크라테스");
+        wiseSayingFileRepository.save(wiseSaying2);
+
+        WiseSaying wiseSaying3 = new WiseSaying("꿈은 현실이 된다.", "작자미상");
+        wiseSayingFileRepository.save(wiseSaying3);
+
+        PageDto pageDto = wiseSayingFileRepository.findByContentContainingIdDesc("꿈", 5, 1);
+
+        assertThat(pageDto.getContent())
+                .containsExactly(
+                        wiseSaying3,
+                        wiseSaying1
                 );
     }
 }
