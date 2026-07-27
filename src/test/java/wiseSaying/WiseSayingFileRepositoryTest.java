@@ -65,4 +65,29 @@ public class WiseSayingFileRepositoryTest {
         assertThat(foundedWiseSaying1).isNull();
 
     }
+
+    @Test
+    @DisplayName("명언 수정")
+    void t4() {
+        WiseSaying wiseSaying1 = new WiseSaying("꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
+        wiseSayingFileRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying = wiseSayingFileRepository.findById(1).get();
+
+        wiseSaying.setContent("너 자신을 알라");
+        wiseSaying.setAuthor("소크라테스");
+
+        wiseSayingFileRepository.save(wiseSaying); // id를 가지고 삭제
+
+        WiseSaying foundedWiseSaying1 = wiseSayingFileRepository.findById(1).get();
+
+        assertThat(foundedWiseSaying1.getId())
+                .isEqualTo(1);
+
+        assertThat(foundedWiseSaying1.getContent())
+                .isEqualTo("너 자신을 알라");
+
+        assertThat(foundedWiseSaying1.getAuthor())
+                .isEqualTo("소크라테스");
+    }
 }
