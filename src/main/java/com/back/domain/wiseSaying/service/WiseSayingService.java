@@ -12,7 +12,7 @@ public class WiseSayingService {
     private WiseSayingRepository wiseSayingRepository;
 
     public WiseSayingService() {
-        this.wiseSayingRepository = AppContext.wiseSayingRepository;
+        this.wiseSayingRepository = AppContext.wiseSayingFileRepository;
     }
 
     public void modify(WiseSaying wiseSaying, String newContent, String newAuthor) {

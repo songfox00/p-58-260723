@@ -16,7 +16,7 @@ public class WiseSayingFileRepositoryTest {
     private WiseSayingFileRepository wiseSayingFileRepository;
 
     public WiseSayingFileRepositoryTest() {
-        AppContext.init();
+        AppContext.init(true);
         wiseSayingFileRepository = AppContext.wiseSayingFileRepository;
     }
 

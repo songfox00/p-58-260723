@@ -1,5 +1,7 @@
 package wiseSaying;
 
+import com.back.domain.wiseSaying.repository.WiseSayingFileRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,11 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WiseSayingControllerTest {
+
+    @BeforeEach
+    void clearDb(){
+        WiseSayingFileRepository.clear();
+    }
 
     @Test
     @DisplayName("등록")
