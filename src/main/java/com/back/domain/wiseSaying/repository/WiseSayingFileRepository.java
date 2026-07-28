@@ -2,6 +2,7 @@ package com.back.domain.wiseSaying.repository;
 
 import com.back.domain.wiseSaying.dto.PageDto;
 import com.back.domain.wiseSaying.entity.WiseSaying;
+import com.back.global.AppConfig;
 import com.back.standard.Util;
 
 import java.util.Comparator;
@@ -11,18 +12,22 @@ import java.util.Optional;
 
 public class WiseSayingFileRepository implements WiseSayingRepository {
 
-    private static final String DB_PATH = "db/wiseSaying";
+    private static final String DB_PATH = "/db/wiseSaying";
 
     public static void clear() {
-        Util.file.delete(DB_PATH);
+        Util.file.delete(getDbPath());
+    }
+
+    private static String getDbPath(){
+        return AppConfig.getMode() + DB_PATH;
     }
 
     private String getFilePath(int id) {
-        return DB_PATH + "/%d.json".formatted(id);
+        return getDbPath() + "/%d.json".formatted(id);
     }
 
     private String getLastIdPath() {
-        return DB_PATH + "/lastId.txt";
+        return getDbPath() + "/lastId.txt";
     }
 
     public Optional<WiseSaying> findById(int id) {
@@ -39,7 +44,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public List<WiseSaying> findAll() {
-        return Util.file.walkRegularFiles(DB_PATH, "^\\d+\\.json$")
+        return Util.file.walkRegularFiles(getDbPath(), "^\\d+\\.json$")
                 .map(path -> Util.file.get(path.toString(), ""))
                 .map(Util.json::toMap)
                 .map(WiseSaying::fromMap)

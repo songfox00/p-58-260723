@@ -3,7 +3,9 @@ package wiseSaying;
 import com.back.domain.wiseSaying.dto.PageDto;
 import com.back.domain.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.repository.WiseSayingFileRepository;
+import com.back.global.AppConfig;
 import com.back.global.AppContext;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,11 @@ public class WiseSayingFileRepositoryTest {
     public WiseSayingFileRepositoryTest() {
         AppContext.init(true);
         wiseSayingFileRepository = AppContext.wiseSayingFileRepository;
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        AppConfig.setTestMode();
     }
 
     @BeforeEach

@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface WiseSayingRepository {
-    public boolean delete(int id);
-    public Optional<WiseSaying> findById(int id);
-    public WiseSaying save(WiseSaying wiseSaying);
-    public List<WiseSaying> findListDesc();
-    public PageDto findByContentContainingIdDesc(String keyword, int pageSize, int page);
-    public PageDto findByAuthorContainingIdDesc(String keyword, int pageSize, int page);
+    boolean delete(int id);
+    Optional<WiseSaying> findById(int id);
+    WiseSaying save(WiseSaying wiseSaying);
+    List<WiseSaying> findListDesc();
+    PageDto findByContentContainingIdDesc(String keyword, int pageSize, int page);
+    PageDto findByAuthorContainingIdDesc(String keyword, int pageSize, int page);
 }

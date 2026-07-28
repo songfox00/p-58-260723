@@ -1,6 +1,8 @@
 package wiseSaying;
 
 import com.back.domain.wiseSaying.repository.WiseSayingFileRepository;
+import com.back.global.AppConfig;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,11 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WiseSayingControllerTest {
+
+    @BeforeAll
+    static void beforeAll() {
+        AppConfig.setTestMode();
+    }
 
     @BeforeEach
     void clearDb(){
